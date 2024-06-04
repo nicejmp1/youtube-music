@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Header from './components/Header';
 import Main from './components/Main';
 import Aside from './components/Aside';
+import Search from './components/Search';
 
 import Home from './pages/Home';
 import MelonPage from './pages/MelonPage';
@@ -20,6 +21,7 @@ const App = () => {
     <BrowserRouter>
       <Header />
       <Main>
+        <Search />
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/melon' element={<MelonPage />} />

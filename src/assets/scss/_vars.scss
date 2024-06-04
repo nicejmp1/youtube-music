@@ -10,14 +10,21 @@
     --black300: #333;
     --black400: #444;
     --black500: #555;
+    --black600: #666;
+    --black700: #777;
+    --black800: #888;
     --white: #fff;
-    --white100: #fff;
-    --white200: #fff;
-    --white300: #fff;
-    --white400: #fff;
-    --white500: #fff;
+    --white100: #f9f9f9;
+    --white200: #eeeeee;
+    --white300: #dfdfdf;
+    --white400: #cfcfcf;
+    --white500: #bfbfbf;
+
+    --pointColor: #f88741;
+    --mainBg: #f6f8f9;
+
     // 폰트 셋팅
-    font-family: var(--mainfont-nanum), var(--mainfont-nexon);
+    font-family: var(--fontAs), var(--fontJ);
     font-size: 16px;
     line-height: 1.5;
     font-weight: 400;
