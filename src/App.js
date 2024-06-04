@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 
-function App() {
+import Header from './components/Header';
+import Main from './components/Main';
+import Aside from './components/Aside';
+
+import Home from './pages/Home';
+import MelonPage from './pages/MelonPage';
+import BugsPage from './pages/BugsPage';
+import ApplePage from './pages/ApplePage';
+import GeniePage from './pages/GeniePage';
+import BillPage from './pages/BillPage';
+import Recent from './pages/Recent';
+import Favorites from './pages/Favorites';
+import Mymusic from './pages/Mymusic.jsx';
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <BrowserRouter>
+      <Header />
+      <Main>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/melon' element={<MelonPage />} />
+          <Route path='/bugs' element={<BugsPage />} />
+          <Route path='/apple' element={<ApplePage />} />
+          <Route path='/genie' element={<GeniePage />} />
+          <Route path='/bill' element={<BillPage />} />
+          <Route path='/recent' element={<Recent />} />
+          <Route path='/favorites' element={<Favorites />} />
+          <Route path='/mymusic' element={<Mymusic />} />
+        </Routes>
+      </Main>
+      <Aside />
+    </BrowserRouter>
+  )
 }
 
-export default App;
+export default App
