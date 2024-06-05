@@ -1,11 +1,33 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 
-const Chart = ({ title, musicList }) => {
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
+import { FcCalendar } from 'react-icons/fc';
+
+
+const CustomInput = forwardRef(({ value, onClick }, ref) => (
+    <button onClick={onClick} ref={ref}>
+        <FcCalendar size={24} />
+        <span>{value}</span>
+    </button>
+));
+
+const Chart = ({ title, musicList, selectedDate, onDateChange, minDate, maxDate }) => {
+
     return (
         <section className='music_chart'>
             <div className="title">
                 <h2>{title}</h2>
-                <div className="date_picker"></div>
+                <div className='date'>
+                    <DatePicker
+                        selected={selectedDate}
+                        onChange={onDateChange}
+                        dateFormat="yyyy-MM-dd"
+                        minDate={minDate}
+                        maxDate={maxDate}
+                        customInput={<CustomInput />}
+                    ></DatePicker>
+                </div>
             </div>
             <div className="list">
                 <ul>

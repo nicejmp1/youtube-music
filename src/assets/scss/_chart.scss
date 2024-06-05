@@ -2,13 +2,30 @@
     padding: 0 2rem 2rem 2rem;
 
     .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
         h2 {
             padding: 1rem;
             color: var(--pointColor);
             font-weight: 900;
         }
 
-        .date_picker {}
+        .date {
+            display: block;
+
+            button {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+
+                span {
+                    margin-left: 4px;
+                }
+            }
+        }
     }
 
     >.list {
