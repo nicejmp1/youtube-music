@@ -1,5 +1,6 @@
 .music_chart {
     padding: 0 2rem 2rem 2rem;
+    position: relative;
 
     .title {
         display: flex;
@@ -24,6 +25,28 @@
                 span {
                     margin-left: 4px;
                 }
+            }
+
+            .react-datepicker__day--today,
+            .react-datepicker__month-text--today,
+            .react-datepicker__quarter-text--today,
+            .react-datepicker__year-text--today {
+                color: #f00;
+            }
+
+            .react-datepicker__day--selected,
+            .react-datepicker__day--in-selecting-range,
+            .react-datepicker__day--in-range,
+            .react-datepicker__month-text--selected,
+            .react-datepicker__month-text--in-selecting-range,
+            .react-datepicker__month-text--in-range,
+            .react-datepicker__quarter-text--selected,
+            .react-datepicker__quarter-text--in-selecting-range,
+            .react-datepicker__quarter-text--in-range,
+            .react-datepicker__year-text--selected,
+            .react-datepicker__year-text--in-selecting-range,
+            .react-datepicker__year-text--in-range {
+                background-color: var(--pointColor);
             }
         }
     }
@@ -83,5 +106,15 @@
                 }
             }
         }
+    }
+
+    .search-results {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        z-index: 1000;
+        width: 100%;
+        height: 400px;
+        background-color: #ccc;
     }
 }

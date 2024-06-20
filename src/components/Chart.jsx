@@ -1,8 +1,11 @@
-import React, { forwardRef } from 'react'
+import React, { forwardRef, useState } from 'react'
 
-import DatePicker from 'react-datepicker';
+import DatePicker, { registerLocale } from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { FcCalendar } from 'react-icons/fc';
+import ko from 'date-fns/locale/ko'
+
+import { fetchVideoID } from '../utils/fetchVideoID';
 
 
 const CustomInput = forwardRef(({ value, onClick }, ref) => (
@@ -12,8 +15,15 @@ const CustomInput = forwardRef(({ value, onClick }, ref) => (
     </button>
 ));
 
-const Chart = ({ title, musicList, selectedDate, onDateChange, minDate, maxDate }) => {
+registerLocale('ko', ko);
 
+const Chart = ({ title, musicList, selectedDate, onDateChange, minDate, maxDate }) => {
+    const [searchResults, setSearchResults] = useState([])
+
+    const handlerItemClick = async (query) => {
+        const resultes = await fetchVideoID(query);
+        setSearchResults(resultes);
+    }
     return (
         <section className='music_chart'>
             <div className="title">
@@ -22,9 +32,10 @@ const Chart = ({ title, musicList, selectedDate, onDateChange, minDate, maxDate 
                     <DatePicker
                         selected={selectedDate}
                         onChange={onDateChange}
-                        dateFormat="yyyy-MM-dd"
+                        dateFormat="yyyy년 MM월 dd일"
                         minDate={minDate}
                         maxDate={maxDate}
+                        locale="ko"
                         customInput={<CustomInput />}
                     ></DatePicker>
                 </div>
@@ -32,7 +43,7 @@ const Chart = ({ title, musicList, selectedDate, onDateChange, minDate, maxDate 
             <div className="list">
                 <ul>
                     {musicList.map((item, index) => (
-                        <li key={index}>
+                        <li key={index} onClick={() => handlerItemClick(item.title)}>
                             <span className='rank'>#{item.rank}</span>
                             <span className='img' style={{ backgroundImage: `url(${item.imageURL})` }}></span>
                             <span className='title'>{item.title}</span>
@@ -41,6 +52,19 @@ const Chart = ({ title, musicList, selectedDate, onDateChange, minDate, maxDate 
                     ))}
                 </ul>
             </div>
+            {searchResults.length > 0 && (
+                <div className='search-results'>
+                    <h3>유튜브 검색 결과입니다. 음악을 듣거나 리스트에 추가할 수 있습니다.</h3>
+                    <ul>
+                        {searchResults.map((result, index) => (
+                            <li key={index}>
+                                <span className='img'></span>
+                                <span className='title'>{result.title}</span>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            )}
         </section>
     )
 }
